@@ -105,5 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fd6481af2bc184e8f8d6bd50476ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSomethingPlacedOn: 0
+  isBuildingPlacedOnGround: 0
+  isDragonPlaced: 0
   hoverMaterial: {fileID: 2100000, guid: 4b570cc2d6a67c7449ca7d2f1b842cea, type: 2}
+  gameManager: {fileID: 0}
+  buildingPlacedOn: {fileID: 0}
+  dragonInCage: {fileID: 0}

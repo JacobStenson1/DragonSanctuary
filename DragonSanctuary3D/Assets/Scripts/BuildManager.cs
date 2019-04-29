@@ -5,29 +5,19 @@ using UnityEngine.EventSystems;
 
 public class BuildManager : MonoBehaviour
 {
-    bool isPlacingSomething = true;
-    bool placingDragon = true;
+    bool isPlacingBuilding = true;
+    bool placingDragon = false;
 
     public GameObject smallcageprefab;
     public GameObject redDragonPrefab;
 
-    public static BuildManager instance;
+    //public static BuildManager instance;
 
+    public UIManager uiManager;
 
     //--
 
     void Awake()
-    {
-        if (instance != null)
-        {
-            Debug.LogError("More than one BuildManager in scene!");
-            return;
-        }
-        instance = this;
-    }
-
-
-    void Start()
     {
         //
     }
@@ -41,7 +31,7 @@ public class BuildManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 
-            if (isPlacingSomething)
+            if (isPlacingBuilding)
             {
                 
                 if (Physics.Raycast(ray, out hit))
@@ -62,16 +52,20 @@ public class BuildManager : MonoBehaviour
 
     public void ToggleBuldingPlacing()
     {
-        isPlacingSomething = !isPlacingSomething;
+        placingDragon = false;
+        isPlacingBuilding = !isPlacingBuilding;
+        uiManager.UpdateBuildStatusText();
     }
     public void ToggleDragonPlacing()
     {
+        isPlacingBuilding = false;
         placingDragon = !placingDragon;
+        uiManager.UpdateBuildStatusText();
     }
 
     public bool getPlacingStatus()
     {
-        return isPlacingSomething;
+        return isPlacingBuilding;
     }
 
     public bool getDragonPlacingStatus()

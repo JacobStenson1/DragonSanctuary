@@ -12,10 +12,16 @@ public class Ground : MonoBehaviour
     public Material hoverMaterial;
 
     BuildManager buildManager;
+
+    //
+    public GameObject gameManager;
+    //
+
     Material defaultMaterial;
     Renderer rend;
 
-    public string buildingPlacedOn;
+    public GameObject buildingPlacedOn = null;
+    public GameObject dragonInCage;
 
     //Vector3 dragonPlaceRotationOffsetT = new Vector3(0.0f, -90.0f, 0.0f);
     Quaternion dragonPlaceRotationOffset = new Quaternion(0.0f, -90.0f, 0.0f, 1.0f);
@@ -23,7 +29,8 @@ public class Ground : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        buildManager = BuildManager.instance;
+        gameManager = GameObject.Find("GameManager");
+        buildManager = gameManager.GetComponent<BuildManager>();
 
         rend = GetComponent<Renderer>();
         defaultMaterial = rend.material;
@@ -34,21 +41,20 @@ public class Ground : MonoBehaviour
     private void OnMouseDown()
     {
         bool buildingPlacingStatus = buildManager.getPlacingStatus();
+        bool doPlaceDragon = buildManager.getDragonPlacingStatus();
 
         if (!isBuildingPlacedOnGround && buildingPlacingStatus)
         {
-            PlaceBuilding(buildManager.getCage(),"Small Cage");
+            GameObject smallCage = buildManager.getCage();
+            PlaceBuilding(smallCage, smallCage.tag);
         }
 
-
-        bool doPlaceDragon = buildManager.getDragonPlacingStatus();
-
-        //
-        if (buildingPlacedOn == "Small Cage" && doPlaceDragon)
+        // Stops the IF below from running if there is no building placed on the ground clicked on.
+        if (buildingPlacedOn)
         {
-            PlaceDragon(buildManager.getDragon());
+            if (buildingPlacedOn.tag == "Small Cage" && doPlaceDragon)
+                PlaceDragon(buildManager.getDragon());
         }
-
     }
 
     //when the user hovers on the ground
@@ -65,7 +71,6 @@ public class Ground : MonoBehaviour
     private void OnMouseExit()
     {
         rend.material = defaultMaterial;
-        //when they move outside.
     }
 
     void PlaceBuilding(GameObject objToPlace,String whatPlaced)
@@ -76,25 +81,37 @@ public class Ground : MonoBehaviour
 
 
         GameObject smallCage = (GameObject)Instantiate(objToPlace, transform.position, transform.rotation);
+
+        // Removes hover texture.
         rend.material = defaultMaterial;
-        buildingPlacedOn = whatPlaced;
+
+        // Sets the cage as a child of the ground it's placed on.
+        smallCage.transform.parent = transform;
+
+        buildingPlacedOn = transform.GetChild(0).gameObject;
 
         isBuildingPlacedOnGround = true;
     }
 
     void PlaceDragon(GameObject objToPlace)
     {
-        Debug.Log("Rotation...");
-        Debug.Log(transform.rotation);    
+        //If hovering over something else, exit function.
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
 
-        GameObject DragonInCage = (GameObject)Instantiate(objToPlace, transform.position, transform.rotation);
+        dragonInCage = Instantiate(objToPlace, transform.position, transform.rotation);
 
         // Rotates dragon in cage 90o to the left.
-        DragonInCage.transform.eulerAngles = new Vector3(
-        DragonInCage.transform.eulerAngles.x,
-        DragonInCage.transform.eulerAngles.y + -90,
-        DragonInCage.transform.eulerAngles.z
+        dragonInCage.transform.eulerAngles = new Vector3(
+        dragonInCage.transform.eulerAngles.x,
+        dragonInCage.transform.eulerAngles.y + -90,
+        dragonInCage.transform.eulerAngles.z
         );
+
+        // Sets the dragon as the second child of the ground.
+        dragonInCage.transform.parent = transform;
+
+        dragonInCage = transform.GetChild(1).gameObject;
 
         isDragonPlaced = true;
     }
