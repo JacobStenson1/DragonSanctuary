@@ -18,6 +18,9 @@ public class Ground : MonoBehaviour
     GameObject shopObj;
     Shop shop;
 
+    GameObject playerObj;
+    Player player;
+
     Material defaultMaterial;
     Renderer rend;
 
@@ -37,6 +40,9 @@ public class Ground : MonoBehaviour
         shopObj = GameObject.Find("Shop");
         shop = shopObj.GetComponent<Shop>();
 
+        playerObj = GameObject.Find("GameManager");
+        player = playerObj.GetComponent<Player>();
+
         rend = GetComponent<Renderer>();
         defaultMaterial = rend.material;
 
@@ -50,9 +56,29 @@ public class Ground : MonoBehaviour
 
         if (!isBuildingPlacedOnGround && buildingPlacingStatus)
         {
-            GameObject smallCage = buildManager.getCage();
-            PlaceBuilding(smallCage, smallCage.tag);
+            GameObject buildingToPlace = buildManager.getCage();
+            Cage CageScript = buildingToPlace.GetComponent<Cage>();
+
+            // If the player afford to place this cage...
+            if (player.totalGold >= CageScript.Cost)
+            {
+                PlaceBuilding(buildingToPlace, buildingToPlace.tag);
+
+                // Deduct gold from the player.
+                player.totalGold -= CageScript.Cost;
+
+                // Update the gold total on screen.
+                uiManager.UpdateSessionStats();
+            }
+            else{
+                // PLAYER CANNOT AFFORD SOMETHING
+                // TO-DO: Make a popup telling them as at the moment they have no idea why they cant place something.
+                Debug.Log("Player cannot afford to place: "+ buildingToPlace.name);
+            }
         }
+
+
+
 
         // Stops the IF below from running if there is no building placed on the ground clicked on.
         if (buildingPlacedOn)

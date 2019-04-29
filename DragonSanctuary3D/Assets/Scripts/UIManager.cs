@@ -5,12 +5,22 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public TextMeshProUGUI BuildStatusText;
+    public Player player;
+
     public BuildManager buildManager;
+    public TextMeshProUGUI BuildStatusText;
+
+    public TextMeshProUGUI goldText;
 
     private void Start()
     {
-        //UpdateBuildStatusText();
+        UpdateAllText();
+    }
+
+    void UpdateAllText()
+    {
+        UpdateSessionStats();
+        UpdateBuildStatusText();
     }
 
     public void UpdateBuildStatusText()
@@ -37,5 +47,14 @@ public class UIManager : MonoBehaviour
     void SetObjText(TextMeshProUGUI obj, string text)
     {
         obj.text = "Placing: "+text;
+    }
+
+    public void UpdateSessionStats()
+    {
+        // update gold
+        // update total dragons
+
+        goldText.text = player.totalGold.ToString();
+
     }
 }

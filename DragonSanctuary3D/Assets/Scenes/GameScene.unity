@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 57360719}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ Transform:
   - {fileID: 109923814}
   - {fileID: 430532182}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &109923814 stripped
 Transform:
@@ -345,7 +345,7 @@ RectTransform:
   - {fileID: 1816676138}
   - {fileID: 463507561}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1351,6 +1351,11 @@ PrefabInstance:
       propertyPath: GameManager
       value: 
       objectReference: {fileID: 1953941468}
+    - target: {fileID: 4260813428418134716, guid: fd04d69d82989074cba0af9a828bdcd8,
+        type: 3}
+      propertyPath: ShopObj
+      value: 
+      objectReference: {fileID: 1816676137}
     - target: {fileID: 4801750143447400362, guid: fd04d69d82989074cba0af9a828bdcd8,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1687,6 +1692,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3222205725436415638}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1719658548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1719658549}
+  m_Layer: 0
+  m_Name: '-------------------------------'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1719658549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719658548}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1816676137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,6 +1734,7 @@ GameObject:
   - component: {fileID: 1816676141}
   - component: {fileID: 1816676140}
   - component: {fileID: 1816676139}
+  - component: {fileID: 1816676142}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -1789,6 +1825,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816676137}
   m_CullTransparentMesh: 0
+--- !u!114 &1816676142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816676137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9bc5ec51068a314c92aa3ef4dc6c455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1904059358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,6 +2005,7 @@ GameObject:
   - component: {fileID: 1953941470}
   - component: {fileID: 1953941469}
   - component: {fileID: 1953941471}
+  - component: {fileID: 1953941472}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1978,7 +2027,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smallcageprefab: {fileID: 1087478526225098028, guid: bb821629ed810d94db61182bdbcd79e6,
     type: 3}
-  redDragonPrefab: {fileID: 0}
+  redDragonPrefab: {fileID: 101231751645543808, guid: f89a08d0d7a8af6418af841bcc8b485b,
+    type: 3}
   uiManager: {fileID: 1953941471}
 --- !u!4 &1953941470
 Transform:
@@ -1988,7 +2038,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953941468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 113.938934, y: 88.622696, z: -349.74942}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2006,8 +2056,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459b8261613f03c408726ffe772fad1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildStatusText: {fileID: 1987251611}
+  player: {fileID: 1953941472}
   buildManager: {fileID: 1953941469}
+  BuildStatusText: {fileID: 1987251611}
+  goldText: {fileID: 897078883}
+--- !u!114 &1953941472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953941468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a293f5f7b033a43a2dd53b453ffd55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalGold: 1000
 --- !u!1 &1958142628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,7 +2412,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3222205725436415638
 PrefabInstance:
