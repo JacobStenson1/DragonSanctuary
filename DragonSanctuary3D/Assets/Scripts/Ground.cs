@@ -12,14 +12,17 @@ public class Ground : MonoBehaviour
     public Material hoverMaterial;
 
     BuildManager buildManager;
-    public UIManager uiManager;
-    public GameObject gameManager;
+    UIManager uiManager;
+    GameObject gameManager;
+    
+    GameObject shopObj;
+    Shop shop;
 
     Material defaultMaterial;
     Renderer rend;
 
-    public GameObject buildingPlacedOn = null;
-    public GameObject dragonInCage = null;
+    GameObject buildingPlacedOn = null;
+    GameObject dragonInCage = null;
 
     //Vector3 dragonPlaceRotationOffsetT = new Vector3(0.0f, -90.0f, 0.0f);
     Quaternion dragonPlaceRotationOffset = new Quaternion(0.0f, -90.0f, 0.0f, 1.0f);
@@ -30,6 +33,9 @@ public class Ground : MonoBehaviour
         gameManager = GameObject.Find("GameManager");
         buildManager = gameManager.GetComponent<BuildManager>();
         uiManager = gameManager.GetComponent<UIManager>();
+
+        shopObj = GameObject.Find("Shop");
+        shop = shopObj.GetComponent<Shop>();
 
         rend = GetComponent<Renderer>();
         defaultMaterial = rend.material;

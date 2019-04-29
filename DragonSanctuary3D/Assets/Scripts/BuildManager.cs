@@ -15,40 +15,7 @@ public class BuildManager : MonoBehaviour
 
     public UIManager uiManager;
 
-    //--
 
-    void Awake()
-    {
-        //
-    }
-
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-
-            if (isPlacingBuilding)
-            {
-                
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if (hit.collider != null)
-                    {
-                        // If the user clicked on the terrain
-                        if (hit.collider.gameObject.tag == "Terrain")
-                        {
-                            // click hit terrain.
-                        }
-                    }
-                }
-            }
-        }
-
-    }
 
     public void ToggleBuldingPlacing()
     {
