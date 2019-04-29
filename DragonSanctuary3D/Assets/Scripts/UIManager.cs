@@ -6,12 +6,11 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI BuildStatusText;
-
     public BuildManager buildManager;
 
     private void Start()
     {
-        UpdateBuildStatusText();
+        //UpdateBuildStatusText();
     }
 
     public void UpdateBuildStatusText()

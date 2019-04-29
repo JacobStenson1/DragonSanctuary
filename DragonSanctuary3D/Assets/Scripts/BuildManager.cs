@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class BuildManager : MonoBehaviour
 {
     bool isPlacingBuilding = true;
-    bool placingDragon = false;
+    bool isPlacingDragon = false;
 
     public GameObject smallcageprefab;
     public GameObject redDragonPrefab;
@@ -52,14 +52,14 @@ public class BuildManager : MonoBehaviour
 
     public void ToggleBuldingPlacing()
     {
-        placingDragon = false;
+        isPlacingDragon = false;
         isPlacingBuilding = !isPlacingBuilding;
         uiManager.UpdateBuildStatusText();
     }
     public void ToggleDragonPlacing()
     {
         isPlacingBuilding = false;
-        placingDragon = !placingDragon;
+        isPlacingDragon = !isPlacingDragon;
         uiManager.UpdateBuildStatusText();
     }
 
@@ -70,12 +70,13 @@ public class BuildManager : MonoBehaviour
 
     public bool getDragonPlacingStatus()
     {
-        return placingDragon;
+        return isPlacingDragon;
     }
 
     public void getWhatToPlace()
     {
-        //
+        // Not yet implemented.
+        // Will be used to get whether the users placing a Dragon OR A Cage (etc).
     }
 
     public GameObject getDragon()
@@ -86,5 +87,11 @@ public class BuildManager : MonoBehaviour
     public GameObject getCage()
     {
         return smallcageprefab;
+    }
+
+    public void AfterSomethingPlaced()
+    {
+        isPlacingBuilding = false;
+        isPlacingDragon = false;
     }
 }

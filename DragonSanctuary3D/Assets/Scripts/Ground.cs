@@ -12,16 +12,14 @@ public class Ground : MonoBehaviour
     public Material hoverMaterial;
 
     BuildManager buildManager;
-
-    //
+    public UIManager uiManager;
     public GameObject gameManager;
-    //
 
     Material defaultMaterial;
     Renderer rend;
 
     public GameObject buildingPlacedOn = null;
-    public GameObject dragonInCage;
+    public GameObject dragonInCage = null;
 
     //Vector3 dragonPlaceRotationOffsetT = new Vector3(0.0f, -90.0f, 0.0f);
     Quaternion dragonPlaceRotationOffset = new Quaternion(0.0f, -90.0f, 0.0f, 1.0f);
@@ -31,6 +29,7 @@ public class Ground : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager");
         buildManager = gameManager.GetComponent<BuildManager>();
+        uiManager = gameManager.GetComponent<UIManager>();
 
         rend = GetComponent<Renderer>();
         defaultMaterial = rend.material;
@@ -55,6 +54,8 @@ public class Ground : MonoBehaviour
             if (buildingPlacedOn.tag == "Small Cage" && doPlaceDragon)
                 PlaceDragon(buildManager.getDragon());
         }
+
+        uiManager.UpdateBuildStatusText();
     }
 
     //when the user hovers on the ground
@@ -91,6 +92,8 @@ public class Ground : MonoBehaviour
         buildingPlacedOn = transform.GetChild(0).gameObject;
 
         isBuildingPlacedOnGround = true;
+
+        buildManager.AfterSomethingPlaced();
     }
 
     void PlaceDragon(GameObject objToPlace)
@@ -114,5 +117,7 @@ public class Ground : MonoBehaviour
         dragonInCage = transform.GetChild(1).gameObject;
 
         isDragonPlaced = true;
+
+        buildManager.AfterSomethingPlaced();
     }
 }
