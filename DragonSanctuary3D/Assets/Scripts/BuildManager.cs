@@ -8,14 +8,12 @@ public class BuildManager : MonoBehaviour
     bool isPlacingBuilding = true;
     bool isPlacingDragon = false;
 
-    public GameObject smallcageprefab;
-    public GameObject redDragonPrefab;
-
-    //public static BuildManager instance;
-
+    [Header("Script References")]
     public UIManager uiManager;
 
-
+    [Header("Prefab References")]
+    public GameObject smallCagePrefab;
+    public GameObject redDragonPrefab;
 
     public void ToggleBuldingPlacing()
     {
@@ -30,7 +28,7 @@ public class BuildManager : MonoBehaviour
         uiManager.UpdateBuildStatusText();
     }
 
-    public bool getPlacingStatus()
+    public bool getBuildingPlacingStatus()
     {
         return isPlacingBuilding;
     }
@@ -53,12 +51,13 @@ public class BuildManager : MonoBehaviour
 
     public GameObject getCage()
     {
-        return smallcageprefab;
+        return smallCagePrefab;
     }
 
     public void AfterSomethingPlaced()
     {
         isPlacingBuilding = false;
         isPlacingDragon = false;
+        uiManager.UpdateBuildStatusText();
     }
 }

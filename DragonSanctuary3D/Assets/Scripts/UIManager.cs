@@ -5,11 +5,12 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Script References")]
     public Player player;
-
     public BuildManager buildManager;
-    public TextMeshProUGUI BuildStatusText;
 
+    [Header("Text References")]
+    public TextMeshProUGUI BuildStatusText;
     public TextMeshProUGUI goldText;
 
     private void Start()
@@ -26,7 +27,7 @@ public class UIManager : MonoBehaviour
     public void UpdateBuildStatusText()
     {
 
-        bool buildingPlaceStatus = buildManager.getPlacingStatus();
+        bool buildingPlaceStatus = buildManager.getBuildingPlacingStatus();
         bool dragonPlaceStatus = buildManager.getDragonPlacingStatus();
 
         //If both the toggles are true...

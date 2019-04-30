@@ -15,17 +15,14 @@ public class Ground : MonoBehaviour
     UIManager uiManager;
     GameObject gameManager;
     
-    GameObject shopObj;
     Shop shop;
-
-    GameObject playerObj;
     Player player;
 
     Material defaultMaterial;
     Renderer rend;
 
     GameObject buildingPlacedOn = null;
-    GameObject dragonInCage = null;
+    public GameObject dragonInCage = null;
 
     //Vector3 dragonPlaceRotationOffsetT = new Vector3(0.0f, -90.0f, 0.0f);
     Quaternion dragonPlaceRotationOffset = new Quaternion(0.0f, -90.0f, 0.0f, 1.0f);
@@ -37,11 +34,8 @@ public class Ground : MonoBehaviour
         buildManager = gameManager.GetComponent<BuildManager>();
         uiManager = gameManager.GetComponent<UIManager>();
 
-        shopObj = GameObject.Find("Shop");
-        shop = shopObj.GetComponent<Shop>();
-
-        playerObj = GameObject.Find("GameManager");
-        player = playerObj.GetComponent<Player>();
+        shop = GameObject.Find("Shop").GetComponent<Shop>();
+        player = GameObject.Find("GameManager").GetComponent<Player>();
 
         rend = GetComponent<Renderer>();
         defaultMaterial = rend.material;
@@ -51,34 +45,41 @@ public class Ground : MonoBehaviour
 
     private void OnMouseDown()
     {
-        bool buildingPlacingStatus = buildManager.getPlacingStatus();
+        ClickOnGround();
+    }
+
+    public void ClickOnGround()
+    {
+        bool buildingPlacingStatus = buildManager.getBuildingPlacingStatus();
         bool doPlaceDragon = buildManager.getDragonPlacingStatus();
 
+        // If there is no building placed on the ground we want to place a building...
         if (!isBuildingPlacedOnGround && buildingPlacingStatus)
         {
             GameObject buildingToPlace = buildManager.getCage();
             Cage CageScript = buildingToPlace.GetComponent<Cage>();
 
             // If the player afford to place this cage...
-            if (player.totalGold >= CageScript.Cost)
+            if (player.totalGold >= CageScript.cost)
             {
-                PlaceBuilding(buildingToPlace, buildingToPlace.tag);
+                bool success = PlaceBuilding(buildingToPlace, buildingToPlace.tag);
 
-                // Deduct gold from the player.
-                player.totalGold -= CageScript.Cost;
+                if (success)
+                {
+                    // Deduct gold from the player.
+                    player.totalGold -= CageScript.cost;
+                }
 
                 // Update the gold total on screen.
                 uiManager.UpdateSessionStats();
             }
-            else{
+            else
+            {
                 // PLAYER CANNOT AFFORD SOMETHING
                 // TO-DO: Make a popup telling them as at the moment they have no idea why they cant place something.
-                Debug.Log("Player cannot afford to place: "+ buildingToPlace.name);
+                Debug.Log("Player cannot afford to place: " + buildingToPlace.name);
             }
         }
-
-
-
 
         // Stops the IF below from running if there is no building placed on the ground clicked on.
         if (buildingPlacedOn)
@@ -93,7 +94,7 @@ public class Ground : MonoBehaviour
     //when the user hovers on the ground
     private void OnMouseEnter()
     {
-        bool buildingPlacingStatus = buildManager.getPlacingStatus();
+        bool buildingPlacingStatus = buildManager.getBuildingPlacingStatus();
 
         if (isBuildingPlacedOnGround || !buildingPlacingStatus)
             return;
@@ -106,11 +107,11 @@ public class Ground : MonoBehaviour
         rend.material = defaultMaterial;
     }
 
-    void PlaceBuilding(GameObject objToPlace,String whatPlaced)
+    public bool PlaceBuilding(GameObject objToPlace,String whatPlaced)
     {
         //If hovering over something else, exit function.
         if (EventSystem.current.IsPointerOverGameObject())
-            return;
+            return false;
 
 
         GameObject smallCage = (GameObject)Instantiate(objToPlace, transform.position, transform.rotation);
@@ -126,13 +127,15 @@ public class Ground : MonoBehaviour
         isBuildingPlacedOnGround = true;
 
         buildManager.AfterSomethingPlaced();
+
+        return true;
     }
 
-    void PlaceDragon(GameObject objToPlace)
+    public bool PlaceDragon(GameObject objToPlace)
     {
         //If hovering over something else, exit function.
         if (EventSystem.current.IsPointerOverGameObject())
-            return;
+            return false;
 
         dragonInCage = Instantiate(objToPlace, transform.position, transform.rotation);
 
@@ -151,5 +154,7 @@ public class Ground : MonoBehaviour
         isDragonPlaced = true;
 
         buildManager.AfterSomethingPlaced();
+
+        return true;
     }
 }
