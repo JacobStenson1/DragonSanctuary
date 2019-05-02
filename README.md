@@ -1,8 +1,8 @@
-# DragonSanctuary3D
+# DragonSanctuary
 
 
 ## Overview
-DragonSanctuary3D - A mobile tycoon game currently in development, based around managing dragons in cages, tending to their needs and profitting from that (will be expanded on).
+DragonSanctuary - A mobile tycoon game currently in development, based around managing dragons in cages, tending to their needs and profitting from that (will be expanded on).
 
 ## --
 
