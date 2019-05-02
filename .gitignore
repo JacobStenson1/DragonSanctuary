@@ -35,7 +35,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-_BuiltProject_EXE/
-_BuiltProject_EXE.zip
-_BuiltProject_WEBGL/
-_BuiltProject_WEBGL.zip
+_BuiltGameFiles
