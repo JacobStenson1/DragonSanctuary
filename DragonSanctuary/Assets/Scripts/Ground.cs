@@ -21,6 +21,9 @@ public class Ground : MonoBehaviour
     Material defaultMaterial;
     Renderer rend;
 
+    public GameObject smallCageHoloPrefab;
+    public GameObject smallCageHologram;
+
     GameObject buildingPlacedOn = null;
     public GameObject dragonInCage = null;
 
@@ -28,7 +31,7 @@ public class Ground : MonoBehaviour
     Quaternion dragonPlaceRotationOffset = new Quaternion(0.0f, -90.0f, 0.0f, 1.0f);
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         gameManager = GameObject.Find("GameManager");
         buildManager = gameManager.GetComponent<BuildManager>();
@@ -40,6 +43,7 @@ public class Ground : MonoBehaviour
         rend = GetComponent<Renderer>();
         defaultMaterial = rend.material;
 
+        isDragonPlaced = false;
         isBuildingPlacedOnGround = false;
     }
 
@@ -66,8 +70,7 @@ public class Ground : MonoBehaviour
 
                 if (success)
                 {
-                    // Deduct gold from the player.
-                    player.totalGold -= CageScript.cost;
+                    shop.BuyBuilding(CageScript);
                 }
 
                 // Update the gold total on screen.
@@ -95,16 +98,18 @@ public class Ground : MonoBehaviour
     private void OnMouseEnter()
     {
         bool buildingPlacingStatus = buildManager.getBuildingPlacingStatus();
+        //buildManager.getCage();
 
         if (isBuildingPlacedOnGround || !buildingPlacingStatus)
             return;
-        rend.material = hoverMaterial;
-        
+
+        // Show a hologram of the building instead of a darkened texture.
+        smallCageHologram = (GameObject)Instantiate(smallCageHoloPrefab, transform.position, transform.rotation);
     }
 
     private void OnMouseExit()
     {
-        rend.material = defaultMaterial;
+        DestroyImmediate(smallCageHologram, true);
     }
 
     public bool PlaceBuilding(GameObject objToPlace,String whatPlaced)
@@ -151,9 +156,9 @@ public class Ground : MonoBehaviour
 
         dragonInCage = transform.GetChild(1).gameObject;
 
-        isDragonPlaced = true;
-
         buildManager.AfterSomethingPlaced();
+
+        isDragonPlaced = true;
 
         return true;
     }

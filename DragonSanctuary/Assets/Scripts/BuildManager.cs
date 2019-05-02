@@ -5,8 +5,11 @@ using UnityEngine.EventSystems;
 
 public class BuildManager : MonoBehaviour
 {
-    bool isPlacingBuilding = true;
+    bool isPlacingBuilding = false;
     bool isPlacingDragon = false;
+
+    GameObject buildingToPlace = null;
+    GameObject dragToPlace = null;
 
     [Header("Script References")]
     public UIManager uiManager;
@@ -44,14 +47,28 @@ public class BuildManager : MonoBehaviour
         // Will be used to get whether the users placing a Dragon OR A Cage (etc).
     }
 
+    public void SetBuildingToPlace(GameObject objToSet)
+    {
+        buildingToPlace = objToSet;
+        isPlacingBuilding = true;
+        uiManager.UpdateBuildStatusText();
+    }
+
+    public void SetDragonToPlace(GameObject dragToSet)
+    {
+        dragToPlace = dragToSet;
+        isPlacingDragon = true;
+        uiManager.UpdateBuildStatusText();
+    }
+
     public GameObject getDragon()
     {
-        return redDragonPrefab;
+        return dragToPlace;
     }
 
     public GameObject getCage()
     {
-        return smallCagePrefab;
+        return buildingToPlace;
     }
 
     public void AfterSomethingPlaced()

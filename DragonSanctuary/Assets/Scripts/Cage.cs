@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,16 +24,21 @@ public class Cage : MonoBehaviour
 
     private void OnMouseDown()
     {
-        bool doPlaceDragon = buildManager.getDragonPlacingStatus();
-        bool doPlaceCage = buildManager.getBuildingPlacingStatus();
-
         // If the user clicks on the cage...
         Debug.Log("Clicked on cage.");
+        ClickOnCage();
+    }
+
+    private void ClickOnCage()
+    {
+        bool doPlaceDragon = buildManager.getDragonPlacingStatus();
+        bool doPlaceCage = buildManager.getBuildingPlacingStatus();
 
         // Place dragon in cage if user is placing dragon.
         if (doPlaceDragon && !isDragonPlaced)
         {
             Debug.Log("Placing a dragon.");
+            // Place a dragon and set isDragonPlaced success bool equal to the return value.
             isDragonPlaced = ground.PlaceDragon(buildManager.getDragon());
             dragonInside = ground.dragonInCage;
         }
@@ -51,6 +57,5 @@ public class Cage : MonoBehaviour
 
         else
             Debug.Log("Else");
-
     }
 }

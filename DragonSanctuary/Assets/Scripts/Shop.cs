@@ -4,11 +4,36 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-   
-    // When the user clicks on something in the shop, deduct gold from them and then call GROUND.PLACESOMETHING
-    public void BuySomething()
-    {
+    public BuildManager buildManager;
+    public Player player;
+    public UIManager uIManager;
 
+    
+
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void SelectSmallCage()
+    {
+        buildManager.SetBuildingToPlace(buildManager.smallCagePrefab);
+        uIManager.ToggleShop();
+        
+    }
+
+    public void SelectRedDragon()
+    {
+        buildManager.SetDragonToPlace(buildManager.redDragonPrefab);
+        uIManager.ToggleShop();
+    }
+
+    public void BuyBuilding(Cage buildingPlaced)
+    {
+        // Deduct gold from the player.
+        player.totalGold -= buildingPlaced.cost;
+
+        //do some kind of animation to show it being placed??
     }
 
 }

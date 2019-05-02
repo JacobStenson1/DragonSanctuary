@@ -108,4 +108,7 @@ MonoBehaviour:
   isBuildingPlacedOnGround: 0
   isDragonPlaced: 0
   hoverMaterial: {fileID: 2100000, guid: 4b570cc2d6a67c7449ca7d2f1b842cea, type: 2}
+  smallCageHoloPrefab: {fileID: 6305931211693670975, guid: 2826a96d5abd62246a6750e4a4aad650,
+    type: 3}
+  smallCageHologram: {fileID: 0}
   dragonInCage: {fileID: 0}
