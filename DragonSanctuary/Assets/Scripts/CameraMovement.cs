@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,12 @@ public class CameraMovement : MonoBehaviour
     float cameraYPos;
     float z = 0.0f;
 
+    public float panBorderThickness = 10f;
+    public float vertPanSpeed = 20f;
+    public float horiPanSpeed = 15f;
+
+    bool doMovement = true;
+
     // Use this for initialization
     void Start()
     {
@@ -19,6 +26,51 @@ public class CameraMovement : MonoBehaviour
     }
 
     void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            doMovement = !doMovement;
+
+        if (!doMovement)
+            return;
+
+        MouseDragMovement();
+        KeyboardMovement();
+    }
+
+    private void KeyboardMovement()
+    {
+        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
+        {
+            transform.Translate(Vector3.forward * vertPanSpeed * Time.deltaTime);
+            Vector3 position = transform.position;
+            position.y = cameraYPos;
+            transform.position = position;
+        }
+        if (Input.GetKey("s") || Input.mousePosition.y <= panBorderThickness)
+        {
+            transform.Translate(Vector3.back * vertPanSpeed * Time.deltaTime);
+            Vector3 position = transform.position;
+            position.y = cameraYPos;
+            transform.position = position;
+        }
+        if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
+        {
+            transform.Translate(Vector3.left * horiPanSpeed * Time.deltaTime);
+            Vector3 position = transform.position;
+            position.y = cameraYPos;
+            transform.position = position;
+        }
+        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness)
+        {
+            transform.Translate(Vector3.right * horiPanSpeed * Time.deltaTime);
+            Vector3 position = transform.position;
+            position.y = cameraYPos;
+            transform.position = position;
+        }
+
+    }
+
+    private void MouseDragMovement()
     {
         if (Input.GetMouseButtonDown(0))
         {

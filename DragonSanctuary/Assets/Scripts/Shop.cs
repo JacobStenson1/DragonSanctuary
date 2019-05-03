@@ -18,6 +18,8 @@ public class Shop : MonoBehaviour
     public void SelectSmallCage()
     {
         buildManager.SetBuildingToPlace(buildManager.smallCagePrefab);
+
+        // Closes the shop window.
         uIManager.ToggleShop();
         
     }
@@ -25,6 +27,8 @@ public class Shop : MonoBehaviour
     public void SelectRedDragon()
     {
         buildManager.SetDragonToPlace(buildManager.redDragonPrefab);
+
+        // Closes the shop window.
         uIManager.ToggleShop();
     }
 

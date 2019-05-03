@@ -154,8 +154,6 @@ public class Ground : MonoBehaviour
         // Sets the dragon as the second child of the ground.
         dragonInCage.transform.parent = transform;
 
-        dragonInCage = transform.GetChild(1).gameObject;
-
         buildManager.AfterSomethingPlaced();
 
         isDragonPlaced = true;
