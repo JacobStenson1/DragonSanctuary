@@ -90,9 +90,10 @@ GameObject:
   - component: {fileID: 204872622309021014}
   - component: {fileID: -2804350745929103964}
   - component: {fileID: 2374144274397673664}
+  - component: {fileID: 3918500900922629778}
   m_Layer: 0
   m_Name: Small Fence Cage
-  m_TagString: Small Cage
+  m_TagString: Cage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,10 +151,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29abbaf6ec3f73c409f97f9b7d9a2c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDragonPlaced: 0
   cost: 100
-  dragonInside: 
+  dragonInside: {fileID: 0}
+  cageName: Small Cage
+  purpose: The cages purpose is to hold dragons.
   buildManager: {fileID: 0}
   ground: {fileID: 0}
+  buildingInfo: {fileID: 3918500900922629778}
+  infoWindowManager: {fileID: 0}
+--- !u!114 &3918500900922629778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087478526225098028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509f45264f573384eaaf6b2a6f7c22d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cageScript: {fileID: 2374144274397673664}
+  buildingName: 
+  buildingType: 
+  buildingPurpose: 
+  dragonName: 
+  dragonPersonality: 
+  dragonGoldEarning: 0
 --- !u!1 &2974021813321810754
 GameObject:
   m_ObjectHideFlags: 0

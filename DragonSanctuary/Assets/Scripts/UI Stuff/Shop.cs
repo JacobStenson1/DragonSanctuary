@@ -8,11 +8,12 @@ public class Shop : MonoBehaviour
     public Player player;
     public UIManager uIManager;
 
-    
+    public Vector3 normalScale;
 
     private void Start()
     {
-        gameObject.SetActive(false);
+        normalScale = gameObject.transform.localScale;
+        uIManager.HideMe(gameObject);
     }
 
     public void SelectSmallCage()
@@ -39,5 +40,4 @@ public class Shop : MonoBehaviour
 
         //do some kind of animation to show it being placed??
     }
-
 }

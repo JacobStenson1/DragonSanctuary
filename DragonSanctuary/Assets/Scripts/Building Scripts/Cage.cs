@@ -10,22 +10,27 @@ public class Cage : MonoBehaviour
     [Header("Attributes")]
     public int cost = 100;
     public GameObject dragonInside = null;
+    public string cageName;
+    public string purpose;
 
     [Header("Script References")]
     public BuildManager buildManager;
     public Ground ground;
+    public BuildingInfo buildingInfo;
+    public BuildingInfoWindowManager infoWindowManager;
 
 
     private void Start()
     {
         ground = transform.parent.gameObject.GetComponent<Ground>();
         buildManager = GameObject.Find("GameManager").GetComponent<BuildManager>();
+        infoWindowManager = GameObject.Find("BuildingInfo").GetComponent<BuildingInfoWindowManager>();
+        //cageName = gameObject.tag;
     }
 
     private void OnMouseDown()
     {
         // If the user clicks on the cage...
-        Debug.Log("Clicked on cage.");
         ClickOnCage();
     }
 
@@ -52,10 +57,10 @@ public class Cage : MonoBehaviour
             return;
         }
 
-        else if (!doPlaceDragon)
-        { Debug.Log("Not placing dragon currently"); }
-
         else
-            Debug.Log("Else");
+        {
+            //Show building info.
+            infoWindowManager.EnterInfo(buildingInfo);
+        }
     }
 }

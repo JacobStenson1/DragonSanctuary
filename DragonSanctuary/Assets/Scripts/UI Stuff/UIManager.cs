@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Player player;
     public BuildManager buildManager;
     public GameObject shop;
+    public Shop shopScript;
 
     [Header("Text References")]
     public TextMeshProUGUI BuildStatusText;
@@ -19,6 +20,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         shop = GameObject.Find("Shop");
+        shopScript = shop.GetComponent<Shop>();
     }
 
     private void Start()
@@ -69,12 +71,25 @@ public class UIManager : MonoBehaviour
     public void ToggleShop()
     {
         toggleShop = !toggleShop;
-        shop.SetActive(toggleShop);
+        if (toggleShop)
+            ShowMe(shop, shopScript.normalScale);
+        else
+            HideMe(shop);
     }
 
     public void CloseShop()
     {
         shop.SetActive(false);
+    }
+
+    public void HideMe(GameObject obj)
+    {
+        obj.transform.localScale = new Vector3(0, 0, 0);
+    }
+
+    public void ShowMe(GameObject obj,Vector3 normalScale)
+    {
+        obj.transform.localScale = normalScale;
     }
 
 }

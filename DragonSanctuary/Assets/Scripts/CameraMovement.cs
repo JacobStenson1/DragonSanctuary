@@ -16,7 +16,7 @@ public class CameraMovement : MonoBehaviour
     public float vertPanSpeed = 20f;
     public float horiPanSpeed = 15f;
 
-    bool doMovement = true;
+    bool doMovement = false;
 
     // Use this for initialization
     void Start()
