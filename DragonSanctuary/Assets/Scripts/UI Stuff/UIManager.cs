@@ -77,11 +77,6 @@ public class UIManager : MonoBehaviour
             HideMe(shop);
     }
 
-    public void CloseShop()
-    {
-        shop.SetActive(false);
-    }
-
     public void HideMe(GameObject obj)
     {
         obj.transform.localScale = new Vector3(0, 0, 0);

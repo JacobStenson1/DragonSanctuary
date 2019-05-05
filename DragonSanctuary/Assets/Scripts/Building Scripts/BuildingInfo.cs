@@ -11,6 +11,7 @@ public class BuildingInfo : MonoBehaviour
     public string buildingName;
     public string buildingType;
     public string buildingPurpose;
+    public int buildingCost;
 
     [Header("Cage Stuff")]
     public string dragonName;
@@ -23,16 +24,17 @@ public class BuildingInfo : MonoBehaviour
         if (cageScript)
         {
             //Do stuff for a cage
-            CageInfo();
+            GetCageInfo();
         }
     }
 
-    void CageInfo()
+    void GetCageInfo()
     {
         // Cage's info.
         buildingName = cageScript.cageName;
-        buildingType = gameObject.tag;
+        buildingType = "Type: " + gameObject.tag;
         buildingPurpose = cageScript.purpose;
+        buildingCost = cageScript.cost;
 
         // Dragon's info.
         dragonName = "name";

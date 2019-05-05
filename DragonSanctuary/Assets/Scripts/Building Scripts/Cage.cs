@@ -60,7 +60,12 @@ public class Cage : MonoBehaviour
         else
         {
             //Show building info.
-            infoWindowManager.EnterInfo(buildingInfo);
+            if (dragonInside)
+                infoWindowManager.EnterInfo(buildingInfo, true);
+            else
+                infoWindowManager.EnterInfo(buildingInfo, false);
+            
+            
         }
     }
 }

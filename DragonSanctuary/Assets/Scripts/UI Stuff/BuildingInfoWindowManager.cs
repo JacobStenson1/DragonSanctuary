@@ -14,6 +14,8 @@ public class BuildingInfoWindowManager : MonoBehaviour
     public TextMeshProUGUI type;
     public TextMeshProUGUI purpose;
     public TextMeshProUGUI dragonInfo;
+
+    public int buildingCost;
     
 
     private void Start()
@@ -23,15 +25,27 @@ public class BuildingInfoWindowManager : MonoBehaviour
         uIManager.HideMe(gameObject);
     }
 
-    public void EnterInfo(BuildingInfo info)
+    public void EnterInfo(BuildingInfo info,bool isDragonInside)
     {
         buildingName.text = info.buildingName;
         type.text = info.buildingType;
         purpose.text = info.buildingPurpose;
 
-        dragonInfo.text = info.dragonName + " | " + info.dragonPersonality + " | " + info.dragonGoldEarning;
+        buildingCost = info.buildingCost;
+
+        if (isDragonInside)
+            dragonInfo.text = info.dragonName + " | " + info.dragonPersonality + " | " + info.dragonGoldEarning;
+        else
+            dragonInfo.text = "There is no dragon inside this cage.";
+            //no dragon
 
         uIManager.ShowMe(gameObject, normalScale);
+    }
+
+    public void SellBuilding()
+    {
+        int sellValue = buildingCost / 2;
+        Debug.Log("Selling building for: " + sellValue+" gold.");
     }
 
     public void CloseWindow()
