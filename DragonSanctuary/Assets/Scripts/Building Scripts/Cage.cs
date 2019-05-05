@@ -10,21 +10,28 @@ public class Cage : MonoBehaviour
     [Header("Attributes")]
     public int cost = 100;
     public GameObject dragonInside = null;
+    public Dragon dragonScript;
     public string cageName;
     public string purpose;
 
     [Header("Script References")]
+    public GameObject gameManager;
     public BuildManager buildManager;
     public Ground ground;
     public BuildingInfo buildingInfo;
     public BuildingInfoWindowManager infoWindowManager;
+    public UIManager uiManager;
 
 
     private void Start()
     {
         ground = transform.parent.gameObject.GetComponent<Ground>();
-        buildManager = GameObject.Find("GameManager").GetComponent<BuildManager>();
+        gameManager = GameObject.Find("GameManager");
+
+        buildManager = gameManager.GetComponent<BuildManager>();
         infoWindowManager = GameObject.Find("BuildingInfo").GetComponent<BuildingInfoWindowManager>();
+        uiManager = gameManager.GetComponent<UIManager>();
+        
         //cageName = gameObject.tag;
     }
 
@@ -36,6 +43,7 @@ public class Cage : MonoBehaviour
 
     private void ClickOnCage()
     {
+        
         bool doPlaceDragon = buildManager.getDragonPlacingStatus();
         bool doPlaceCage = buildManager.getBuildingPlacingStatus();
 
@@ -60,12 +68,16 @@ public class Cage : MonoBehaviour
         else
         {
             //Show building info.
+            infoWindowManager.EnterBuildingInfo(buildingInfo);
+
             if (dragonInside)
-                infoWindowManager.EnterInfo(buildingInfo, true);
-            else
-                infoWindowManager.EnterInfo(buildingInfo, false);
-            
-            
+            {
+                dragonScript = dragonInside.GetComponent<Dragon>();
+                infoWindowManager.EnterDragonInfo(dragonScript);
+            }
+
+            // Show the info window.
+            uiManager.ShowMe(infoWindowManager.gameObject, infoWindowManager.normalScale);
         }
     }
 }

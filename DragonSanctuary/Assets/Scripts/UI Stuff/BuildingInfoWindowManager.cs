@@ -25,7 +25,7 @@ public class BuildingInfoWindowManager : MonoBehaviour
         uIManager.HideMe(gameObject);
     }
 
-    public void EnterInfo(BuildingInfo info,bool isDragonInside)
+    public void EnterBuildingInfo(BuildingInfo info)
     {
         buildingName.text = info.buildingName;
         type.text = info.buildingType;
@@ -33,13 +33,13 @@ public class BuildingInfoWindowManager : MonoBehaviour
 
         buildingCost = info.buildingCost;
 
-        if (isDragonInside)
-            dragonInfo.text = info.dragonName + " | " + info.dragonPersonality + " | " + info.dragonGoldEarning;
-        else
+        if (info.buildingType != "Cage")
             dragonInfo.text = "There is no dragon inside this cage.";
-            //no dragon
+    }
 
-        uIManager.ShowMe(gameObject, normalScale);
+    public void EnterDragonInfo(Dragon dragon)
+    {
+        dragonInfo.text = dragon.dragonName + " | " + dragon.personality + " | " + dragon.goldPerSecond;
     }
 
     public void SellBuilding()
