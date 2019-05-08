@@ -4,6 +4,8 @@
 ## Overview
 DragonSanctuary - A mobile tycoon game currently in development, based around managing dragons in cages, tending to their needs and profitting from that (will be expanded on).
 
+See the game on my itch.io page - https://salazhar.itch.io/dragonsanctuary
+
 ## --
 
 None of the assets used in this project are owned by myself, they have all been taken from the Unity Asset Store. All rights to their respective owners.
