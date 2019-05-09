@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Cage : MonoBehaviour
 {
@@ -67,6 +68,8 @@ public class Cage : MonoBehaviour
 
         else
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
             //Show building info.
             infoWindowManager.EnterBuildingInfo(buildingInfo);
 

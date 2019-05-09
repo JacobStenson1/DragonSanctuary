@@ -885,6 +885,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1498536023297479779, guid: f89a08d0d7a8af6418af841bcc8b485b,
+        type: 3}
+      propertyPath: dragManager
+      value: 
+      objectReference: {fileID: 1953941473}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f89a08d0d7a8af6418af841bcc8b485b, type: 3}
 --- !u!1 &363676005
@@ -2386,7 +2391,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923911896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000027464}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1.2615577, y: 1.0545481, z: 1.1081456}
   m_Children: []
   m_Father: {fileID: 1678003198}
@@ -2394,8 +2399,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -127}
-  m_SizeDelta: {x: 172.1, y: 50.8}
+  m_AnchoredPosition: {x: 117.26, y: -218.4}
+  m_SizeDelta: {x: 210.44, y: 195.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &923911898
 MonoBehaviour:
@@ -2417,7 +2422,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 0 gold atm
+  m_text: cant buy in future (free at the moment)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2462,7 +2467,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 7
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -2486,12 +2491,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -5.9415507, w: 0}
   m_textInfo:
     textComponent: {fileID: 923911898}
-    characterCount: 10
+    characterCount: 39
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 7
+    wordCount: 8
     linkCount: 0
-    lineCount: 2
+    lineCount: 4
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -4047,6 +4052,7 @@ GameObject:
   - component: {fileID: 1953941469}
   - component: {fileID: 1953941471}
   - component: {fileID: 1953941472}
+  - component: {fileID: 1953941473}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4117,6 +4123,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalGold: 1000
   totalDragons: 0
+--- !u!114 &1953941473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953941468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c1c16660014a74e80b4367e910d19e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1958142628
 GameObject:
   m_ObjectHideFlags: 0

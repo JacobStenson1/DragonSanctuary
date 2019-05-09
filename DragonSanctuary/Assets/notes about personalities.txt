@@ -1,0 +1,9 @@
+angry
+	- more gold
+	- requires more care
+	- red colour?
+
+calm / shy
+	- less gold
+	- less care
+	- blue colour?
