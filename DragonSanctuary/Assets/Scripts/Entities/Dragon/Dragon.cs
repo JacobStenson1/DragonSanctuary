@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class Dragon : MonoBehaviour
 {
-    public int goldPerSecond;
+    public int goldIncome;
     public string dragonName;
 
     public string personality;
@@ -18,17 +18,17 @@ public class Dragon : MonoBehaviour
     {
         dragManager = GameObject.Find("GameManager").GetComponent<DragonManager>();
 
-        goldPerSecond = 1;
+        goldIncome = 1;
         dragonName = "Name here";
         personality = "Personality here";
 
         string[] names = dragManager.GetNames();
-        FileInfo[] personalities = dragManager.GetPersonalities();
+        string[] personalities = dragManager.GetPersonalities();
 
         SetInfo(names,personalities);
     }
 
-    private void SetInfo(string[] names, FileInfo[] personalities)
+    private void SetInfo(string[] names, string[] personalities)
     {
         SetName(names);
         SetPersonality(personalities);
@@ -45,20 +45,14 @@ public class Dragon : MonoBehaviour
         dragonName = names[ranNum];
     }
 
-    public void SetPersonality(FileInfo[] personalities)
+    public void SetPersonality(string[] personalities)
     {
-        // What personalities do I want?
-        // Angry - more gold but they eat more food?
+        int ranNum = Random.Range(0, personalities.Length);
 
-
-        // Choose a personality then assign a certain file to this dragon object.
-
-        // -
-        // 1. Find a personality to give to a dragon. (How?) Random number?
-        // 2. Assign that personality script to the Dragon.
-
-        //personalities;
-
+        if(personalities[ranNum] == "Angry")
+            dragManager.SetPersonalityAngry(this);
+        if(personalities[ranNum] == "Calm")
+            dragManager.SetPersonalityCalm(this);
     }
 
     public void SetGoldPS()

@@ -7,27 +7,42 @@ public class DragonManager : MonoBehaviour
 {
     string[] Names;
 
+    public string DragonNamesFile = "DragonNames";
+    string txtContents;
+
+    public string[] personalities;
+
+    public int goldPerSecond;
+    public string personality;
+
+
     // Reads all the names in the DragonNames file and assigns them to a 'Names' array.
     public string[] GetNames()
     {
-        string path = "Assets/Text/DragonNames.txt";
-        Names = File.ReadAllLines(path);
+        TextAsset textAssets = (TextAsset)Resources.Load(DragonNamesFile);
+        txtContents = textAssets.text;
+
+        string[] Names = txtContents.Split('\n');
 
         return Names;
     }
 
-    public FileInfo[] GetPersonalities()
+    public string[] GetPersonalities()
     {
-        string dir = "Assets/Scripts/Entities/Dragon/Personalities/";
-
-
-        // Make a reference to a directory.
-        DirectoryInfo di = new DirectoryInfo(dir);
-        // Get a reference to each file in that directory.
-        FileInfo[] fiArr = di.GetFiles();
-        // Display the names and sizes of the files.
-        Debug.Log("Total personalities: " + fiArr.Length);
-
-        return fiArr;
+        personalities = new string[] { "Angry","Calm" };
+        return personalities;
     }
+
+    public void SetPersonalityAngry(Dragon dragon)
+    {
+        dragon.goldIncome = 20;
+        dragon.personality = "Angry";
+    }
+
+    public void SetPersonalityCalm(Dragon dragon)
+    {
+        dragon.goldIncome = 10;
+        dragon.personality = "Calm";
+    }
+
 }

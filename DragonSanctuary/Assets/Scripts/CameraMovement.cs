@@ -18,18 +18,25 @@ public class CameraMovement : MonoBehaviour
 
     bool doMovement = false;
 
+    public UIManager uiManager;
+
     // Use this for initialization
     void Start()
     {
         // Makes sure the camera does not intersect the terrain
         cameraYPos = transform.position.y;
+
+        uiManager = GameObject.Find("GameManager").GetComponent<UIManager>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
             doMovement = !doMovement;
-
+            uiManager.cameraMovementStatus.text = doMovement.ToString();
+        }
+            
         if (!doMovement)
             return;
 

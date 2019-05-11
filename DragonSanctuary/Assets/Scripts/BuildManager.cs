@@ -51,6 +51,7 @@ public class BuildManager : MonoBehaviour
     {
         buildingToPlace = objToSet;
         isPlacingBuilding = true;
+        isPlacingDragon = false;
         uiManager.UpdateBuildStatusText();
     }
 
@@ -58,6 +59,7 @@ public class BuildManager : MonoBehaviour
     {
         dragToPlace = dragToSet;
         isPlacingDragon = true;
+        isPlacingBuilding = false;
         uiManager.UpdateBuildStatusText();
     }
 
@@ -69,6 +71,13 @@ public class BuildManager : MonoBehaviour
     public GameObject getCage()
     {
         return buildingToPlace;
+    }
+
+    public void CancelShopSelection()
+    {
+        isPlacingBuilding = false;
+        isPlacingDragon = false;
+        uiManager.UpdateBuildStatusText();
     }
 
     public void AfterSomethingPlaced()

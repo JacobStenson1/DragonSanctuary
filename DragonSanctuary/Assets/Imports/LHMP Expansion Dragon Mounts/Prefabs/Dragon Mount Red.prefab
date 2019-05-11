@@ -503,6 +503,7 @@ MonoBehaviour:
   goldPerSecond: 0
   dragonName: 
   personality: 
+  dragManager: {fileID: 0}
 --- !u!1 &1197867527505048
 GameObject:
   m_ObjectHideFlags: 0

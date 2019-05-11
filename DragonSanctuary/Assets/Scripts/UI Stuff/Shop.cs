@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,11 +34,22 @@ public class Shop : MonoBehaviour
         uIManager.ToggleShop();
     }
 
+    public void CancelSelection()
+    {
+        buildManager.CancelShopSelection();
+        uIManager.HideMe(gameObject);
+    }
+
     public void BuyBuilding(Cage buildingPlaced)
     {
         // Deduct gold from the player.
         player.totalGold -= buildingPlaced.cost;
 
         //do some kind of animation to show it being placed??
+    }
+
+    public void BuyDragon()
+    {
+        throw new NotImplementedException();
     }
 }

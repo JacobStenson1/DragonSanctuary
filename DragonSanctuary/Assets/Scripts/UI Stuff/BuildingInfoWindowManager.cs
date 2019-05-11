@@ -5,7 +5,7 @@ using TMPro;
 
 public class BuildingInfoWindowManager : MonoBehaviour
 {
-    //Class that manages buildings
+    // Class that manages the info shown when the player clicks on a building
 
     public Vector3 normalScale;
     public UIManager uIManager;
@@ -39,7 +39,9 @@ public class BuildingInfoWindowManager : MonoBehaviour
 
     public void EnterDragonInfo(Dragon dragon)
     {
-        dragonInfo.text = dragon.dragonName + " | " + dragon.personality + " | " + dragon.goldPerSecond;
+        dragonInfo.text =   "Name: "+dragon.dragonName + "\n" + 
+                            "Personality: " + dragon.personality + "\n" + 
+                            "Gold per minute (WIP): " + dragon.goldIncome;
     }
 
     public void SellBuilding()

@@ -84,13 +84,6 @@ public class Ground : MonoBehaviour
             }
         }
 
-        // Stops the IF below from running if there is no building placed on the ground clicked on.
-        if (buildingPlacedOn)
-        {
-            if (buildingPlacedOn.tag == "Cage" && doPlaceDragon)
-                PlaceDragon(buildManager.getDragon());
-        }
-
         uiManager.UpdateBuildStatusText();
     }
 

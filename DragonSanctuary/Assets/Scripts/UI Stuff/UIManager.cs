@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [Header("Text References")]
     public TextMeshProUGUI BuildStatusText;
     public TextMeshProUGUI goldText;
+    public TextMeshProUGUI cameraMovementStatus;
 
     private void Awake()
     {
