@@ -35,13 +35,13 @@ public class DragonManager : MonoBehaviour
 
     public void SetPersonalityAngry(Dragon dragon)
     {
-        dragon.goldIncome = 20;
+        dragon.goldPerMinute = 20;
         dragon.personality = "Angry";
     }
 
     public void SetPersonalityCalm(Dragon dragon)
     {
-        dragon.goldIncome = 10;
+        dragon.goldPerMinute = 10;
         dragon.personality = "Calm";
     }
 

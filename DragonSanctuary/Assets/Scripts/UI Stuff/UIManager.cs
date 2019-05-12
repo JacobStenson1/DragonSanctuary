@@ -66,7 +66,7 @@ public class UIManager : MonoBehaviour
         // update gold
         // update total dragons
 
-        goldText.text = player.totalGold.ToString();
+        goldText.text = player.totalGold.ToString("F0");
 
     }
     public void ToggleShop()

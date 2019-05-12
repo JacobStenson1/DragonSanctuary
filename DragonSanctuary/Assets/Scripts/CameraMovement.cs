@@ -16,6 +16,10 @@ public class CameraMovement : MonoBehaviour
     public float vertPanSpeed = 20f;
     public float horiPanSpeed = 15f;
 
+    public float scrollSpeed = 5f;
+    public float minY = 7.5f;
+    public float maxY = 60f;
+
     bool doMovement = false;
 
     public UIManager uiManager;
@@ -41,11 +45,13 @@ public class CameraMovement : MonoBehaviour
             return;
 
         MouseDragMovement();
-        KeyboardMovement();
+        KeyboardAndScrollMovement();
     }
 
-    private void KeyboardMovement()
+    private void KeyboardAndScrollMovement()
     {
+        cameraYPos = transform.position.y;
+
         if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
         {
             transform.Translate(Vector3.forward * vertPanSpeed * Time.deltaTime);
@@ -74,6 +80,16 @@ public class CameraMovement : MonoBehaviour
             position.y = cameraYPos;
             transform.position = position;
         }
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        Vector3 pos = transform.position;
+        pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+
+        transform.position = pos;
+
+        //transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime);
 
     }
 

@@ -692,7 +692,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -205.79996, y: -275}
+  m_AnchoredPosition: {x: -205.79999, y: -275}
   m_SizeDelta: {x: -503.1, y: 137.4}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &287439631
@@ -3369,8 +3369,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000,
-        type: 0}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd04d69d82989074cba0af9a828bdcd8, type: 3}
 --- !u!1 &1545001239
@@ -3428,6 +3427,9 @@ MonoBehaviour:
   panBorderThickness: 10
   vertPanSpeed: 20
   horiPanSpeed: 15
+  scrollSpeed: 5
+  minY: 5
+  maxY: 40
   uiManager: {fileID: 0}
 --- !u!81 &1545001242
 AudioListener:
@@ -3471,7 +3473,7 @@ Camera:
   near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 4.3
   m_Depth: -1
   m_CullingMask:
@@ -3495,13 +3497,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545001239}
-  m_LocalRotation: {x: 0.17054696, y: 0.7928324, z: -0.25732443, w: 0.52546626}
-  m_LocalPosition: {x: -9.940001, y: 7.13, z: 5.32}
+  m_LocalRotation: {x: -0.27773246, y: -0.7205537, z: 0.41904405, w: -0.47756594}
+  m_LocalPosition: {x: -6, y: 10, z: 3.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 35.963, y: -247.07098, z: 0}
+  m_LocalEulerAnglesHint: {x: 60.361004, y: -247.07098, z: 0}
 --- !u!1 &1678003197
 GameObject:
   m_ObjectHideFlags: 0
@@ -4561,8 +4563,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a293f5f7b033a43a2dd53b453ffd55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalGold: 1000
+  totalGold: 0
   totalDragons: 0
+  uIManager: {fileID: 0}
 --- !u!114 &1953941473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4924,7 +4927,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 259, y: -104}
+  m_AnchoredPosition: {x: 283, y: -185}
   m_SizeDelta: {x: 256.3, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1987251611
@@ -5446,5 +5449,10 @@ PrefabInstance:
       propertyPath: buildingPlacedOn
       value: 
       objectReference: {fileID: 444472037}
+    - target: {fileID: 4801750143443728262, guid: fd04d69d82989074cba0af9a828bdcd8,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd04d69d82989074cba0af9a828bdcd8, type: 3}

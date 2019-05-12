@@ -7,29 +7,39 @@ using Random = UnityEngine.Random;
 
 public class Dragon : MonoBehaviour
 {
-    public int goldIncome;
-    public string dragonName;
+    public int goldPerMinute;
+    public double goldPerSecond;
 
+    public string dragonName;
     public string personality;
 
     public DragonManager dragManager;
+    public Player player;
+    public UIManager uIManager;
+    public GameObject gameManager;
 
     private void Start()
     {
-        dragManager = GameObject.Find("GameManager").GetComponent<DragonManager>();
+        gameManager = GameObject.Find("GameManager");
+        dragManager = gameManager.GetComponent<DragonManager>();
+        player = gameManager.GetComponent<Player>();
+        uIManager = gameManager.GetComponent<UIManager>();
 
-        goldIncome = 1;
+        goldPerMinute = 1;
+        goldPerSecond = 0.01f;
         dragonName = "Name here";
         personality = "Personality here";
 
+        SetInfo();
+
+        InvokeRepeating("GenerateGold",1,1);
+    }
+
+    private void SetInfo()
+    {
         string[] names = dragManager.GetNames();
         string[] personalities = dragManager.GetPersonalities();
 
-        SetInfo(names,personalities);
-    }
-
-    private void SetInfo(string[] names, string[] personalities)
-    {
         SetName(names);
         SetPersonality(personalities);
         SetGoldPS();
@@ -57,6 +67,15 @@ public class Dragon : MonoBehaviour
 
     public void SetGoldPS()
     {
+        goldPerSecond = goldPerMinute / 60.0;
 
+        // Rounds gold per second to 2 decimal places.
+        goldPerSecond = Math.Round(goldPerSecond, 2);
+    }
+
+    public void GenerateGold()
+    {
+        player.totalGold += goldPerSecond;
+        uIManager.UpdateSessionStats();
     }
 }

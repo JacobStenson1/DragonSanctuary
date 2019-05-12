@@ -39,9 +39,9 @@ public class BuildingInfoWindowManager : MonoBehaviour
 
     public void EnterDragonInfo(Dragon dragon)
     {
-        dragonInfo.text =   "Name: "+dragon.dragonName + "\n" + 
+        dragonInfo.text =   "Name: " + dragon.dragonName + "\n" + 
                             "Personality: " + dragon.personality + "\n" + 
-                            "Gold per minute (WIP): " + dragon.goldIncome;
+                            "Gold per minute (WIP): " + dragon.goldPerMinute;
     }
 
     public void SellBuilding()
