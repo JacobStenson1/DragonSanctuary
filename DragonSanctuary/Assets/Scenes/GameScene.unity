@@ -414,6 +414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalScale: {x: 0, y: 0, z: 0}
   uIManager: {fileID: 1953941471}
+  player: {fileID: 0}
   buildingName: {fileID: 761530299}
   type: {fileID: 529289498}
   purpose: {fileID: 443625387}
@@ -692,7 +693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -205.79999, y: -275}
+  m_AnchoredPosition: {x: -205.80002, y: -275}
   m_SizeDelta: {x: -503.1, y: 137.4}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &287439631
@@ -3497,13 +3498,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545001239}
-  m_LocalRotation: {x: -0.27773246, y: -0.7205537, z: 0.41904405, w: -0.47756594}
-  m_LocalPosition: {x: -6, y: 10, z: 3.7}
+  m_LocalRotation: {x: -0.24498561, y: -0.7471046, z: 0.36963543, w: -0.49516314}
+  m_LocalPosition: {x: -6.59, y: 9.51, z: 3.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 60.361004, y: -247.07098, z: 0}
+  m_LocalEulerAnglesHint: {x: 52.648003, y: -247.07098, z: 0}
 --- !u!1 &1678003197
 GameObject:
   m_ObjectHideFlags: 0

@@ -69,9 +69,7 @@ public class Ground : MonoBehaviour
                 bool success = PlaceBuilding(buildingToPlace, buildingToPlace.tag);
 
                 if (success)
-                {
                     shop.BuyBuilding(CageScript);
-                }
 
                 // Update the gold total on screen.
                 uiManager.UpdateSessionStats();

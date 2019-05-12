@@ -9,6 +9,9 @@ public class BuildingInfoWindowManager : MonoBehaviour
 
     public Vector3 normalScale;
     public UIManager uIManager;
+    public Player player;
+
+    BuildingInfo currentBuildingInfo;
 
     public TextMeshProUGUI buildingName;
     public TextMeshProUGUI type;
@@ -16,17 +19,22 @@ public class BuildingInfoWindowManager : MonoBehaviour
     public TextMeshProUGUI dragonInfo;
 
     public int buildingCost;
+
+    
     
 
     private void Start()
     {
-        //gameObject.SetActive(false);
+        player = GameObject.Find("GameManager").GetComponent<Player>();
+
         normalScale = gameObject.transform.localScale;
         uIManager.HideMe(gameObject);
     }
 
     public void EnterBuildingInfo(BuildingInfo info)
     {
+        currentBuildingInfo = info;
+
         buildingName.text = info.buildingName;
         type.text = info.buildingType;
         purpose.text = info.buildingPurpose;
@@ -47,6 +55,17 @@ public class BuildingInfoWindowManager : MonoBehaviour
     public void SellBuilding()
     {
         int sellValue = buildingCost / 2;
+
+        // Tells the ground the building is placed on, there is no longer a building placed on it.
+        Cage cage = currentBuildingInfo.GetComponent<Cage>();
+        cage.ground.isBuildingPlacedOnGround = false;
+
+        DestroyImmediate(cage.dragonInside, true);
+        DestroyImmediate(currentBuildingInfo.gameObject, true);
+
+        player.totalGold += sellValue;
+        uIManager.UpdateSessionStats();
+
         Debug.Log("Selling building for: " + sellValue+" gold.");
     }
 
